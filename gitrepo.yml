@@ -14,9 +14,6 @@
       loop:
         - { "url":"https://github.com/alastairhm/docker-rpi-squid.git", "path":"docker-rpi-squid"}
         - { "url":"https://github.com/sthuber90/docker-speedtest.git", "path":"docker-speedtest"}
-        - { "url":"https://github.com/asdf-vm/asdf.git", "path":"asdf"}
-        - { "url":"git@github.com:alastairmontgomery1-nhs/dotfiles.git", "path":"dotfiles"}
-        - { "url":"git@github.com:alastairmontgomery1-nhs/scripts.git", "path":"scripts"}
 
     - name: Change file permission
       file:
@@ -24,28 +21,4 @@
         owner: "{{ local_user }}"
         group: "{{ local_group }}"          
         recurse: yes
-
-    - name: Check if directory exists
-      become_user: "{{ local_user }}"
-      ansible.builtin.stat:
-        path: /home/{{ local_user }}/.asdf
-      register: dir_check
-
-    - name: link adsf
-      file:
-        src: "/home/{{ local_user }}/{{ repo_path }}/asdf"
-        dest: "/home/{{ local_user }}/.asdf"
-        state: link
-        force: no
-      when: not dir_check.stat.exists
-
-    - name: Add asdf to bashrc
-      lineinfile:
-        dest: "/home/{{ local_user }}/.bashrc"
-        line: '. "$HOME/.asdf/asdf.sh"'
-    
-    - name: Add asdf to bashrc2
-      lineinfile:
-        dest: "/home/{{ local_user }}/.bashrc"
-        line: '. "$HOME/.asdf/completions/asdf.bash"'
 

@@ -9,7 +9,7 @@
 
   tasks:
     - import_tasks: packages.yml 
-    - import_tasks: gitrepo.yml
+    # - import_tasks: gitrepo.yml
     - import_tasks: asdf_setup.yml
     - import_tasks: ohmyzsh.yml
     - import_tasks: atuin.yml

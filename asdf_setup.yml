@@ -1,47 +1,68 @@
 ---
+    - name: Unarchive a file that needs to be downloaded (added in 2.0)
+      ansible.builtin.unarchive:
+        src: https://github.com/asdf-vm/asdf/releases/download/v0.16.3/asdf-v0.16.3-linux-amd64.tar.gz
+        dest: /home/{{ local_user }}/bin
+        remote_src: yes
+        
+    - name: Change file permission
+      file:
+        path: /home/{{ local_user }}/bin/asdf
+        owner: "{{ local_user }}"
+        group: "{{ local_group }}"          
+
+    - name: "ensure asdf directory exists"
+      file:
+        path: "/home/{{ local_user }}/{{ repo_path }}"
+        state: directory
+        owner: "{{ local_user }}"
+        group: "{{ local_group }}"
+      become: true
+
     - name: Ensure plugins are installed
       become_user: "{{ local_user }}"
       ansible.builtin.command: 
-        cmd: "/home/{{ local_user }}/.asdf/bin/asdf plugin add {{ item }}"
+        cmd: "/home/{{ local_user }}/bin/asdf plugin add {{ item }}"
       loop:
         - awscli
         - bat
         - exa
         - fd
         - fzf
+        - golang
         - python
         - ruby
-        - task
-        - zoxide
         - rust
-        - golang
+        - task
+        - terraform
+        - zoxide
 
     - name: Ensure utilities are installed
       become_user: "{{ local_user }}"
       ansible.builtin.command: 
-        cmd: "/home/{{ local_user }}/.asdf/bin/asdf install {{ item }} latest"
+        cmd: "/home/{{ local_user }}/bin/asdf install {{ item }} latest"
       loop:
         - awscli
         - bat
         - exa
         - fd
         - fzf
+        - golang
+        - rust
         - terraform
         - zoxide
-        - rust
-        - golang
 
     - name: Ensure utilities are used
       become_user: "{{ local_user }}"
       ansible.builtin.command: 
-        cmd: "/home/{{ local_user }}/.asdf/bin/asdf global {{ item }} latest"
+        cmd: "/home/{{ local_user }}/bin/asdf global {{ item }} latest"
       loop:
         - awscli
         - bat
         - exa
         - fd
         - fzf
+        - golang
+        - rust
         - terraform
         - zoxide
-        - rust
-        - golang
