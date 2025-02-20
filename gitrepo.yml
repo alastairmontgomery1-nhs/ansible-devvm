@@ -15,6 +15,8 @@
         - { "url":"https://github.com/alastairhm/docker-rpi-squid.git", "path":"docker-rpi-squid"}
         - { "url":"https://github.com/sthuber90/docker-speedtest.git", "path":"docker-speedtest"}
         - { "url":"https://github.com/asdf-vm/asdf.git", "path":"asdf"}
+        - { "url":"git@github.com:alastairmontgomery1-nhs/dotfiles.git", "path":"dotfiles"}
+        - { "url":"git@github.com:alastairmontgomery1-nhs/scripts.git", "path":"scripts"}
 
     - name: Change file permission
       file:

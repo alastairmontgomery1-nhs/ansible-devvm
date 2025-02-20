@@ -1,0 +1,5 @@
+---
+    - name: Ensure OhMyZsh
+      become_user: "{{ local_user }}"
+      ansible.builtin.command: 
+        cmd: "curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh"

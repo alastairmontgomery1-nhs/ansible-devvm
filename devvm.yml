@@ -1,0 +1,16 @@
+
+---
+- hosts: localhost
+  vars:
+    repo_path: "gitrp"
+    local_user: "spineii-user"
+    local_group: "spineii-user"
+  become: yes
+
+  tasks:
+    - import_tasks: packages.yml 
+    - import_tasks: gitrepo.yml
+    - import_tasks: asdf_setup.yml
+    - import_tasks: ohmyzsh.yml
+    - import_tasks: atuin.yml
+

@@ -12,8 +12,9 @@
         - python
         - ruby
         - task
-        - terraform
         - zoxide
+        - rust
+        - golang
 
     - name: Ensure utilities are installed
       become_user: "{{ local_user }}"
@@ -25,9 +26,10 @@
         - exa
         - fd
         - fzf
-        - task
         - terraform
         - zoxide
+        - rust
+        - golang
 
     - name: Ensure utilities are used
       become_user: "{{ local_user }}"
@@ -39,6 +41,7 @@
         - exa
         - fd
         - fzf
-        - task
         - terraform
         - zoxide
+        - rust
+        - golang

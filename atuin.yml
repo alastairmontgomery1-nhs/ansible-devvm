@@ -1,0 +1,5 @@
+---
+    - name: Ensure autin
+      become_user: "{{ local_user }}"
+      ansible.builtin.command: 
+        cmd: "cargo install atuin ; asdf reshim"
